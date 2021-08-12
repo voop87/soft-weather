@@ -3,7 +3,7 @@
 		<form @submit.prevent="onSubmit">
 			<input
 				class="form-control"
-				type="search" placeholder="Укажите город.."
+				type="text" placeholder="Укажите город.."
 				v-model="searchText"
 			>
 			<button class="btn btn-dark" type="submit">Найти</button>

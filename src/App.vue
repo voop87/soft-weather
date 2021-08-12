@@ -31,7 +31,7 @@ export default {
 		async searchTown(searchText) {
 			this.town = searchText;
 
-			await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${searchText}&units=metric&cnt=10&appid=63623439096e87e393efaaa735fcb9cd`)
+			await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.town}&units=metric&cnt=10&appid=63623439096e87e393efaaa735fcb9cd`)
 			.then(res => {
 				if (res.status === 200 || res.status === 201) {
 					this.errored = false;
