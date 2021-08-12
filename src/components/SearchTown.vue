@@ -2,10 +2,11 @@
 	<div class="container">
 		<form @submit.prevent="onSubmit">
 			<input
+				class="form-control"
 				type="search" placeholder="Укажите город.."
 				v-model="searchText"
 			>
-			<button type="submit">Найти</button>
+			<button class="btn btn-dark" type="submit">Найти</button>
 		</form>
 	</div>
 </template>
@@ -19,7 +20,6 @@ export default {
 	},
 	methods: {
 		onSubmit() {
-			console.log(this.searchText);
 			if(this.searchText.trim()) {
 				this.$emit('search', this.searchText);
 				this.searchText = '';

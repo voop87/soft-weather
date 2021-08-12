@@ -1,12 +1,14 @@
 <template>
-	<h1>Прогноз погоды <span class="town-name">{{ town }}</span></h1>
+	<h1>
+		Прогноз погоды <span v-if="!errored" class="town-name">{{ town }}</span>
+	</h1>
 	<hr>
 	<SearchTown @search="searchTown"/>
 	<WeatherTable
 		:forecast='forecast'
 		v-if="forecast.length > 0"
 	/>
-	<p v-if="errored">Упс, ничего не найдено! Попробуйте ввести другой город..</p>
+	<p class="fs-2" v-if="errored">Упс, ничего не найдено! Попробуйте ввести другой город..</p>
 </template>
 
 <script>
@@ -29,7 +31,7 @@ export default {
 		async searchTown(searchText) {
 			this.town = searchText;
 
-			await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.town}&units=metric&cnt=10&lang=ru&appid=63623439096e87e393efaaa735fcb9cd`)
+			await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${searchText}&units=metric&cnt=10&appid=63623439096e87e393efaaa735fcb9cd`)
 			.then(res => {
 				if (res.status === 200 || res.status === 201) {
 					this.errored = false;
@@ -58,6 +60,7 @@ export default {
 }
 
 .town-name {
+	display: block;
 	text-transform: uppercase;
 }
 </style>
